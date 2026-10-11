@@ -1,0 +1,325 @@
+[
+ {
+  "group": "news",
+  "name": "Hacker News API",
+  "kind": "hn_api",
+  "locator": "https://hacker-news.firebaseio.com/v0",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "news",
+  "name": "HN front page RSS",
+  "kind": "rss",
+  "locator": "https://news.ycombinator.com/rss",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "news",
+  "name": "TechCrunch Startups",
+  "kind": "rss",
+  "locator": "https://techcrunch.com/category/startups/feed/",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "news",
+  "name": "TechCrunch Venture",
+  "kind": "rss",
+  "locator": "https://techcrunch.com/category/venture/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "news",
+  "name": "Crunchbase News",
+  "kind": "rss",
+  "locator": "https://news.crunchbase.com/feed/",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "news",
+  "name": "Sifted",
+  "kind": "rss",
+  "locator": "https://sifted.eu/feed",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "news",
+  "name": "SaaStr",
+  "kind": "rss",
+  "locator": "https://www.saastr.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Y Combinator blog",
+  "kind": "rss",
+  "locator": "https://www.ycombinator.com/blog/rss/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Paul Graham essays",
+  "kind": "web",
+  "locator": "https://paulgraham.com/articles.html",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Sam Altman",
+  "kind": "rss",
+  "locator": "https://blog.samaltman.com/posts.atom",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Fred Wilson (AVC)",
+  "kind": "rss",
+  "locator": "https://avc.xyz/feed",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Paul Buchheit",
+  "kind": "rss",
+  "locator": "https://paulbuchheit.blogspot.com/feeds/posts/default",
+  "available": true,
+  "checked": "2026-09-30",
+  "defaultHidden": true
+ },
+ {
+  "group": "blogs",
+  "name": "Tomasz Tunguz",
+  "kind": "rss",
+  "locator": "https://tomtunguz.com/index.xml",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Elad Gil",
+  "kind": "rss",
+  "locator": "https://blog.eladgil.com/feed",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Lenny's Newsletter",
+  "kind": "rss",
+  "locator": "https://www.lennysnewsletter.com/feed",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Not Boring",
+  "kind": "rss",
+  "locator": "https://www.notboring.co/feed",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Benedict Evans",
+  "kind": "rss",
+  "locator": "https://www.ben-evans.com/benedictevans?format=rss",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Stratechery (free)",
+  "kind": "rss",
+  "locator": "https://stratechery.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Hunter Walk",
+  "kind": "rss",
+  "locator": "https://hunterwalk.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Brad Feld",
+  "kind": "rss",
+  "locator": "https://feld.com/feed",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Steve Blank",
+  "kind": "rss",
+  "locator": "https://steveblank.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Bill Gurley",
+  "kind": "rss",
+  "locator": "https://abovethecrowd.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Marc Andreessen",
+  "kind": "rss",
+  "locator": "https://pmarca.substack.com/feed",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Andrew Chen",
+  "kind": "rss",
+  "locator": "https://andrewchen.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Mark Suster",
+  "kind": "rss",
+  "locator": "https://medium.com/feed/@msuster",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "blogs",
+  "name": "Entrepreneur First",
+  "kind": "rss",
+  "locator": "https://www.joinef.com/feed/",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "vc",
+  "name": "a16z",
+  "kind": "web",
+  "locator": "https://a16z.com/news-content/",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "vc",
+  "name": "Sequoia",
+  "kind": "rss",
+  "locator": "https://sequoiacap.com/feeds/stories",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "vc",
+  "name": "Bessemer Atlas",
+  "kind": "web",
+  "locator": "https://www.bvp.com/atlas",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ },
+ {
+  "group": "company",
+  "name": "Vercel blog",
+  "kind": "web",
+  "locator": "https://vercel.com/blog",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "company",
+  "name": "Linear changelog",
+  "kind": "web",
+  "locator": "https://linear.app/changelog",
+  "available": true,
+  "checked": "2026-09-30"
+ },
+ {
+  "group": "search",
+  "name": "Google News: seed rounds",
+  "kind": "search",
+  "locator": "https://news.google.com/rss/search?q=%22raises%22+%22seed+round%22+when:7d&hl=en-US&gl=US&ceid=US:en",
+  "available": true,
+  "checked": "2026-09-30",
+  "provider": "google_news",
+  "resolveLinks": "browser"
+ },
+ {
+  "group": "search",
+  "name": "Google News: Series A",
+  "kind": "search",
+  "locator": "https://news.google.com/rss/search?q=%22Series+A%22+raises+when:7d&hl=en-US&gl=US&ceid=US:en",
+  "available": true,
+  "checked": "2026-09-30",
+  "provider": "google_news",
+  "resolveLinks": "browser"
+ },
+ {
+  "group": "search",
+  "name": "Google News: acquisitions",
+  "kind": "search",
+  "locator": "https://news.google.com/rss/search?q=acquires+startup+when:7d&hl=en-US&gl=US&ceid=US:en",
+  "available": true,
+  "checked": "2026-09-30",
+  "provider": "google_news",
+  "resolveLinks": "browser"
+ },
+ {
+  "group": "search",
+  "name": "Google News: new VC funds",
+  "kind": "search",
+  "locator": "https://news.google.com/rss/search?q=%22closes%22+fund+venture+when:7d&hl=en-US&gl=US&ceid=US:en",
+  "available": true,
+  "checked": "2026-09-30",
+  "provider": "google_news",
+  "resolveLinks": "browser"
+ },
+ {
+  "group": "search",
+  "name": "HN Algolia: Show HN",
+  "kind": "search",
+  "locator": "https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&hitsPerPage=20",
+  "available": true,
+  "checked": "2026-09-30",
+  "provider": "hn"
+ },
+ {
+  "group": "search",
+  "name": "HN Algolia: query 'legal AI'",
+  "kind": "search",
+  "locator": "https://hn.algolia.com/api/v1/search_by_date?query=legal%20AI&tags=story&hitsPerPage=20",
+  "available": true,
+  "checked": "2026-09-30",
+  "provider": "hn"
+ },
+ {
+  "group": "newsletters",
+  "name": "StrictlyVC",
+  "kind": "email",
+  "locator": "connie@strictlyvc.com",
+  "available": true,
+  "checked": "2026-09-30",
+  "featured": true
+ }
+]

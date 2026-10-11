@@ -1,0 +1,12 @@
+[
+  {
+    "email": "reader@ledger.test",
+    "password": "UPXbfu6FiAPG",
+    "entitled": true
+  },
+  {
+    "email": "reader-free@ledger.test",
+    "password": "HFey1qXoVGaV",
+    "entitled": false
+  }
+]

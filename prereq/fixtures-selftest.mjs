@@ -1,0 +1,41 @@
+import { spawn } from 'node:child_process'; import http from 'node:http'; import crypto from 'node:crypto'; import fs from 'node:fs';
+import { JSDOM, VirtualConsole } from 'jsdom'; import { Readability } from '@mozilla/readability';
+import { DOCS, D12, LEDGER } from '../fixtures/corpus/corpus.mjs';
+const srv = spawn('node', ['../fixtures/server/server.mjs'], { stdio: 'ignore' }); await new Promise(r => setTimeout(r, 600));
+const req = (site, path, { method = 'GET', body, cookie } = {}) => new Promise((ok, no) => { const r = http.request({ host: '127.0.0.1', port: 4700, path, method, headers: { Host: `${site}.test:4700`, ...(cookie ? { Cookie: cookie } : {}), ...(body ? { 'Content-Type': 'application/x-www-form-urlencoded' } : {}) } }, res => { let d = ''; res.on('data', c => d += c); res.on('end', () => ok({ status: res.statusCode, headers: res.headers, body: d })); }); r.on('error', no); if (body) r.write(body); r.end(); });
+const ctl = (path, b = {}) => new Promise(ok => { const r = http.request({ host: '127.0.0.1', port: 4700, path, method: 'POST', headers: { 'Content-Type': 'application/json' } }, res => { res.resume(); res.on('end', ok); }); r.end(JSON.stringify(b)); });
+const vc = new VirtualConsole(); const read = (html, url) => { const a = new Readability(new JSDOM(html, { url, virtualConsole: vc }).window.document).parse(); if (!a) return ''; const d = new JSDOM(a.content.replace(/<\/(p|h[1-6]|li|div|blockquote)>/g, '</$1>\n\n')).window.document; return (d.body.textContent || '').replace(/\s+/g, ' ').trim(); };
+const norm = s => s.replace(/\s+/g, ' ').trim();
+let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : (fail++, console.log('FAIL', m)); };
+const parasFor = (d, epoch) => d.sameBodyAs === 'D12' ? D12.paras : d.sameBodyAs ? DOCS.find(x => x.id === d.sameBodyAs).paras : d.parasByEpoch ? d.parasByEpoch[epoch] : d.paras;
+for (const epoch of [1, 2]) { await ctl('/__control/epoch', { n: epoch });
+  for (const d of DOCS) { const r = await req(d.site, d.path); if (!d.epoch.includes(epoch)) { ok(r.status === 404, `${d.id} hidden in epoch ${epoch}`); continue; }
+    const t = read(r.body, `http://${d.site}.test:4700${d.path}`); for (const p of parasFor(d, epoch).slice(0, 4)) ok(t.includes(p), `${d.id} e${epoch} contains: ${p.slice(0, 50)}`); } }
+await ctl('/__control/epoch', { n: 1 });
+const h = s => crypto.createHash('sha256').update(norm(s)).digest('hex');
+const t1 = read((await req('signalwire', '/lumen-legal-series-a')).body, 'http://signalwire.test/'), t2 = read((await req('vln', '/2026/09/22/lumen-legal-series-a')).body, 'http://vln.test/');
+ok(h(t1.slice(t1.indexOf('Lumen Legal, a'))) === h(t2.slice(t2.indexOf('Lumen Legal, a'))), 'D1 ≡ D2 body hash');
+const sh = s => { const w = norm(s).toLowerCase().split(' '); return new Set(w.slice(0, -4).map((_, i) => w.slice(i, i + 5).join(' '))); };
+const eml = fs.readFileSync('../fixtures/email/deal-memo-daily-2026-09-25.eml', 'utf8'); const emlText = eml.split('Content-Type: text/plain; charset=utf-8')[1].split('--rwb')[0];
+const web = read((await req('vln', '/2026/09/25/deal-memo-daily')).body, 'http://vln.test/'); const A = sh(emlText.slice(0, 5000)), B = sh(web.slice(0, 5000)); const inter = [...A].filter(x => B.has(x)).length;
+const jac = inter / (A.size + B.size - inter); ok(jac >= 0.8, `D12/D12w Jaccard ${jac.toFixed(2)} ≥ 0.8`);
+for (const p of D12.paras.slice(0, 3)) ok(eml.includes(p), 'eml contains ' + p.slice(0, 40));
+const feed = (await req('signalwire', '/feed.xml')).body; ok((feed.match(/<item>/g) || []).length === 4, 'signalwire feed e1 has 4 items');
+await ctl('/__control/epoch', { n: 2 }); ok(((await req('signalwire', '/feed.xml')).body.match(/<item>/g) || []).length === 5, 'feed e2 has 5 items');
+ok(JSON.parse((await req('hn', '/v0/topstories.json')).body).length === 3, 'HN e2 3 ids'); await ctl('/__control/epoch', { n: 1 });
+ok(JSON.parse((await req('hn', '/v0/topstories.json')).body).length === 2, 'HN e1 2 ids');
+for (const [site, base] of [['northwind', '/blog/'], ['stackforge', '/blog/'], ['vln', '/'], ['ledger', '/']]) { const links = [...(await req(site, base)).body.matchAll(/href="(\/[^"]+)"/g)].map(m => m[1]).filter(x => x.split('/').filter(Boolean).length >= 2 || /\d{4}/.test(x)); ok(new Set(links).size >= 3, `${site} listing ≥3 article links (${new Set(links).size})`); }
+ok(/Portfolio/.test((await req('northwind', '/')).body) && /Investments/.test((await req('northwind', '/')).body), 'Northwind nav Portfolio/Investments');
+ok((await req('broken', '/feed.xml')).status === 500, 'broken 500'); await ctl('/__control/fail', { route: 'broken/feed.xml', status: 200 }); ok((await req('broken', '/feed.xml')).status === 200, 'broken recovers via control');
+ok((await req('gone', '/')).status === 404, 'gone 404'); ok(/Disallow: \//.test((await req('robots-blocked', '/robots.txt')).body), 'robots-blocked disallows');
+ok((await req('news-search', '/articles/a1')).headers.location?.includes('vln.test'), 'news-search redirect → publisher'); ok((await req('news-search', '/articles/broken')).status === 404, 'news-search unresolvable 404');
+ok(/Northwind Ventures led a \$3 million seed round in Burstco 3\./.test((await req('alerts', '/burst-3')).body), 'alerts burst-3');
+const users = JSON.parse(fs.readFileSync('../fixtures/server/ledger-users.json', 'utf8'));
+const loggedOut = read((await req('ledger', LEDGER.d14.path)).body, 'http://ledger.test/'); ok(!loggedOut.includes('Meridian Mutual now pays') && /Sign in to keep reading/.test((await req('ledger', LEDGER.d14.path)).body), 'D14 walled logged out');
+const login = async u => { const r = await req('ledger', '/login', { method: 'POST', body: `email=${encodeURIComponent(u.email)}&password=${encodeURIComponent(u.password)}` }); return r.headers['set-cookie']?.[0].split(';')[0]; };
+const ck = await login(users[0]); const full = read((await req('ledger', LEDGER.d14.path, { cookie: ck })).body, 'http://ledger.test/');
+ok(full.includes(LEDGER.d14.full[0]) && full.includes(LEDGER.d14.full[1]), 'D14 full for entitled'); ok(full.split(' ').length >= 400, `D14 ≥400 words (${full.split(' ').length})`);
+ok(/Upgrade to Ledger Pro/.test((await req('ledger', LEDGER.d14p.path, { cookie: ck })).body), 'D14p walled even when entitled');
+const ck2 = await login(users[1]); ok(!read((await req('ledger', LEDGER.d14.path, { cookie: ck2 })).body, 'http://ledger.test/').includes('Meridian Mutual now pays'), 'D14 walled for non-entitled user');
+await ctl('/__control/ledger/expire-sessions'); ok(!read((await req('ledger', LEDGER.d14.path, { cookie: ck })).body, 'http://ledger.test/').includes('Meridian Mutual now pays'), 'expire-sessions logs everyone out');
+srv.kill(); console.log(`fixtures selftest: ${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);

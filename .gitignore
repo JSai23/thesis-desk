@@ -1,0 +1,25 @@
+node_modules
+prereq/.env.local
+prereq/node_modules/
+prereq/.out/
+app/dist/
+app/out/
+tests/results/
+*.log
+.DS_Store
+prereq/spike-check/dist/
+prereq/status.json.bak
+prereq/.out-*.json
+prereq/.rebuild.log
+tests/blind/runs/
+test-results/
+playwright-report/
+tests/scratch/
+tests/ai-cache
+# kept locally, never published: design handoff archives, live third-party page snapshots, a real newsletter email
+*.zip
+fixtures/corpus/live/
+fixtures/email/strictlyvc-live.eml
+design/prototype/uploads/
+docs/media/*.webm
+prereq/status.json

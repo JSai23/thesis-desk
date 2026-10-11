@@ -1,0 +1,4 @@
+#!/bin/sh
+# Shim for the blind-evaluation ui-driver CLI (tests/harness/ui-driver/client.mjs). The runner puts this dir on PATH.
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+exec "${RW_UI_NODE:-node}" "$DIR/client.mjs" "$@"

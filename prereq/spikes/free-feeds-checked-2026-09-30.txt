@@ -1,0 +1,27 @@
+Paul Graham essays|http://www.aaronsw.com/2002/feeds/pgessays.rss
+Y Combinator blog|https://www.ycombinator.com/blog/rss/
+Hacker News front page|https://news.ycombinator.com/rss
+Sam Altman|https://blog.samaltman.com/posts.atom
+Fred Wilson (AVC)|https://avc.xyz/feed
+Tomasz Tunguz|https://tomtunguz.com/index.xml
+Elad Gil|https://blog.eladgil.com/feed
+Andrew Chen|https://andrewchen.com/feed/
+Lenny's Newsletter|https://www.lennysnewsletter.com/feed
+Not Boring (Packy McCormick)|https://www.notboring.co/feed
+Benedict Evans|https://www.ben-evans.com/benedictevans?format=rss
+Stratechery (free posts)|https://stratechery.com/feed/
+Hunter Walk|https://hunterwalk.com/feed/
+Brad Feld|https://feld.com/feed
+Both Sides of the Table (Mark Suster)|https://bothsidesofthetable.com/feed
+Steve Blank|https://steveblank.com/feed/
+Bill Gurley (Above the Crowd)|https://abovethecrowd.com/feed/
+Paul Buchheit|https://paulbuchheit.blogspot.com/feeds/posts/default
+TechCrunch Startups|https://techcrunch.com/category/startups/feed/
+TechCrunch Venture|https://techcrunch.com/category/venture/feed/
+Crunchbase News|https://news.crunchbase.com/feed/
+Sifted|https://sifted.eu/feed
+a16z|https://a16z.com/feed/
+Google News search: seed round|https://news.google.com/rss/search?q=%22raises%22+%22seed+round%22+when:7d&hl=en-US&gl=US&ceid=US:en
+Google News search: Series A|https://news.google.com/rss/search?q=%22Series+A%22+raises+when:7d&hl=en-US&gl=US&ceid=US:en
+Google News search: acquires startup|https://news.google.com/rss/search?q=acquires+startup+when:7d&hl=en-US&gl=US&ceid=US:en
+HN Algolia search: Show HN|https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&hitsPerPage=20

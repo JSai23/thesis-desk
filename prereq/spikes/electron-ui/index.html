@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"><title>RW Spike</title></head>
+<body style="font-family:-apple-system;background:#131418;color:#eee;padding:40px">
+<h1>Today</h1><input aria-label="Thought" placeholder="What are you thinking?">
+<button id="save">Save thought</button><p id="out" role="status">Nothing saved</p>
+<script>document.getElementById('save').onclick=async()=>{const v=document.querySelector('input').value;const r=await window.rw.invoke('counter.inc');document.getElementById('out').textContent='Saved #'+r.value+': '+v;}</script>
+</body></html>

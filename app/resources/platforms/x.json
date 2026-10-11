@@ -1,0 +1,9 @@
+{
+  "platform": "x",
+  "verified": "2026-10-01T01:46:44.674Z",
+  "post": "article[data-testid=\"tweet\"]",
+  "author": "[data-testid=\"User-Name\"]",
+  "text": "[data-testid=\"tweetText\"]",
+  "time": "time[datetime]",
+  "permalink": "a[href*=\"/status/\"]:has(time)"
+}

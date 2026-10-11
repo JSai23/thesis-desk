@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: Type check · static audit · requirement coverage
+    # a macOS app: the lockfile is resolved for macOS, and contributors build on macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      # no Electron binary or native rebuild needed for these checks
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm run audit:static
+      - name: Every requirement in the RFC maps to a test
+        run: node tests/coverage.mjs

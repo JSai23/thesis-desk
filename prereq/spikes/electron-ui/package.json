@@ -1,0 +1,3 @@
+{ "name": "rw-spike", "version": "0.0.1", "main": "main.js", "private": true, "author": "spike",
+  "build": { "appId": "com.local.rwspike", "productName": "RW Spike", "asar": true, "files": ["main.js","preload.js","index.html","package.json"], "mac": { "target": ["dir"], "identity": null } },
+  "devDependencies": { "electron": "44.5.1", "electron-builder": "*", "playwright": "*" } }
